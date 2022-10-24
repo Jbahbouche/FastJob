@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle candidature{% endblock %}
+
+{% block body %}
+
+<main class="form-signin2 card shadow">
+    <h2 class="h3 mb-3 font-weight-normal">Votre candidature au poste de {{ poste }} chez {{ entreprise }}</h2>
+        {{ include('candidature/_form.html.twig') }}
+
+</main>
+{% endblock %}

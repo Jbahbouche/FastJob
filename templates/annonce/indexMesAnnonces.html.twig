@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes annonces{% endblock %}
+
+{% block body %}
+<main class="form-signin2 card shadow">
+    <a href="{{ path('app_annonce_new') }}" class="btn btn-custom d-flex align-self-end justify-content-center" style="color: white; padding: 5px;">Nouvelle Annonce</a>
+    <div class="text-center mb-4 d-flex justify-content-start align-items-center">
+        <h3 class="text-custom">Mes offres d'emploi</h1>
+    </div>
+    
+    {% for annonce in annonces %}
+        <div class='card shadow ps-2 mb-2 pt-2'>
+            <div class="d-flex justify-content-between mb-0">
+                <h3 class="ms-2 text-custom ">{{ annonce.titre }}</h2>
+                <div class="me-2">
+                    <p class='mb-0'><span class="text-custom">Salaire : </span>{{ annonce.salaire }}k€/an</p>
+                    <p><span class="text-custom">Publiée le : </span>{{ annonce.createdAt ? annonce.createdAt|date('d/m/Y') : '' }}</p>
+                </div>
+            </div>
+            <div class='d-flex'>
+                <p>{{ annonce.departement }} - {{ annonce.ville }}</p>
+            </div>
+            <p class="small mx-1">{{ annonce.profil | u.truncate(100, '...') }}</p>
+            <div class='d-flex justify-content-end mb-3'>
+                <a href="{{ path('app_annonce_show', {'id': annonce.id}) }}" class="btn btn-custom me-2" style="color: white; padding: 5px;">Détails</a>
+                <a href="{{ path('app_annonce_edit', {'id': annonce.id}) }}" class="btn btn-custom me-2" style="color: white; padding: 5px;">Modifier</a>
+                <a href="{{ path('app_annonce_candidat_show', {'id': annonce.id}) }}" class="btn btn-custom me-2" style="color: white; padding: 5px;">Candidats</a>
+            </div>
+        </div>
+    {% endfor %}
+
+</main>
+
+{% endblock %}

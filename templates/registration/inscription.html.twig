@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+        
+{% block body %}
+    <h1 class="my-5 ms-5"><span class="text-custom">Entreprise</span> ou <span class="text-custom">candidat</span>, nous vous accompagnons :</h1>
+    <div class="d-flex justify-content-around flex-wrap">
+        <div class="col-10 col-md-5 my-3 ">
+            <div class="card shadow py-4 px-5 rounded ">
+                <h3 class="mb-4">Vous êtes candidat</h3>
+                <div class="d-flex flex-wrap  justify-content-between">
+                    <p class="mt-2 col-10 col-md-5">Trouvez le job de rêves près de chez vous, avec plus de <span class="text-custom">XXX</span> postes à pourvoir. 
+                       Publiez votre CV et développez votre carrière.</p>
+                    <img src="{{asset('assets/img/job.png')}}" alt="job" class="entretien" class="col-10 col-md-5">
+                </div>
+                <a href="{{path('app_register_candidat')}}" class="btn btn-custom text-white mt-3 mb-2 py-2 shadow"><h5>Continuer</h5></a>
+            </div>
+        </div>
+        <div class="col-10 col-md-5 my-3 ">
+            <div class="card shadow py-4 px-5 rounded ">
+                <h3 class="mb-4">Vous représentez une société</h3>
+                <div class="d-flex flex-wrap  justify-content-between">
+                    <p class="mt-2 col-10 col-md-5">Vous souhaitez trouver le profil qui correspond à vos besoins parmis nos <span class="text-custom">XXX</span> candidats. 
+                        Et continuer à développer votre entreprise</p>
+                    <img src="{{asset('assets/img/entretien.png')}}" alt="entretien" class="entretien" class="col-10 col-md-5">
+                </div>
+                <a href="{{path('app_register_entreprise')}}" class="btn btn-custom text-white mt-3 mb-2 py-2 shadow"><h5>Continuer</h5></a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

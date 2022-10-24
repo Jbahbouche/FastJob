@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=PT+Sans&display=swap');
+body {
+  font-family: 'Noto Sans', sans-serif;
+  font-family: 'PT Sans', sans-serif;
+}
+.logo{
+    max-width:100px;
+}
+.icon{
+    width: 25px;
+}
+
+.dropdown-toggle::after {
+    content: none;
+}
+.nav-item:hover{
+
+    border-bottom: #31b0b45e 2px solid;
+
+}
+.form-signin {
+    width: 100%;
+    max-width: 500px;
+    padding: 15px;
+    margin: auto;
+  }
+.form-signin2 {
+    max-width: 1000px !important;
+    padding: 15px;
+    margin: auto;
+  }
+
+.presentation {
+    width: 100%;
+    max-width: 700px;
+    padding: 15px;
+    margin: auto;
+    font-weight: 400;
+  }
+  
+.form-signin .checkbox {
+    font-weight: 400;
+  }
+  
+.form-signin .form-floating:focus-within {
+    z-index: 2;
+  }
+  
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+.btn-custom{
+    background-color: #31b0b4;
+    width: 150px;
+    transition: transform 1s;
+  }
+.btn-custom:hover{
+    transform: scale(1.1);
+  }
+.btn-custom2{
+    background-color: #31b0b4;
+    width: 50px;
+    transition: transform 1s;
+    color: white
+  }
+.btn-custom2:hover{
+    transform: scale(1.1);
+  }
+
+.entretien{
+  max-width: 300px;
+}
+.text-custom{
+  color: #31b0b4;
+}
+.icon2{
+  width: 30px;
+  height: 30px;
+}
+.icon3{
+  width: 30px;
+  
+}
+#annonce_competence {
+  background-color: #31b0b4;
+}
+.cartouche{
+  border: 1px solid #106b6e;
+  background-color: #31b0b4;
+  color: white;
+  padding: 5px 10px 5px 10px;
+  border-radius: 10%;
+  margin-bottom: 10px;
+}
+.cartouchePostule{
+  border: 1px solid rgb(32, 75, 11);
+  background-color: #31b493;
+  color: white;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.cartoucheConsult{
+  border: 1px solid #106e52;
+  background-color: #31b46c;
+  color: white;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.cartoucheNonRetenue{
+  border: 1px solid #6e1023;
+  background-color: #b43142;
+  color: white;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.cartoucheNonConsult{
+  border: 1px solid #102f6e;
+  background-color: #5360b3;
+  color: white;
+  padding: 5px 15px 5px 15px;
+  border-radius: 5px;
+}
+
+/*************************************************************************  Media *************************************************************************************/
+/***************************************  Tablette ************************/
+@media(max-width:1200px){
+    .logo{
+        max-width: 100px;
+    }
+    .form-signin {
+        max-width: 330px;
+      }
+    .entretien{
+        max-width: 200px;
+      }
+}
+  /**************Telephone*******************/
+  @media(max-width:767px){
+    .logo{
+        max-width: 50px;
+    }
+  }

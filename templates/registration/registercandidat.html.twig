@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+
+<main class="form-signin card shadow">
+    <div class="text-center mb-4">
+        <img src="{{ asset('assets/img/FastJob.png') }}" class="logo" alt="logo FastJob">
+    </div>
+    <h1 class="h3 mb-3 font-weight-normal">Première étape: vos identifiants </h1>
+        {{ form_start(registrationForm, {'attr': {'class': 'form-floating my-2'}}) }}
+            {{ form_row(registrationForm.email,  {'attr': {'class': 'form-floating form-control my-2'}}) }}
+            {{ form_row(registrationForm.plainPassword, {
+            label: 'Password',
+            'attr': {'class': 'form-floating form-control my-2'}
+        }) }}
+
+        <button class="btn btn-custom text-white my-4 py-2 shadow w-75" type="submit">Passer à la prochaine étape</button>
+    {{ form_end(registrationForm) }}
+</main>
+    
+{% endblock %}

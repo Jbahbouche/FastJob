@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{societe.nom}}{% endblock %}
+
+{% block body %}
+
+<main class="form-signin2 card shadow">
+
+    <h1 class="h3 mb-3 font-weight-normal">Modification des informations de votre entreprise </h1>
+        {{ include('societe/_form.html.twig', {'button_label': 'Update'}) }}
+
+</main>
+{% endblock %}

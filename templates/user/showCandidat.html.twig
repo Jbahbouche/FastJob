@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil : {{ candidat.nom }} {{ candidat.prenom }}{% endblock %}
+
+{% block body %}
+
+<div class="form-signin2 card shadow">
+    <div class='d-flex my-3'>
+        <p class="h2  ms-3">{{ candidat.nom }} {{ candidat.prenom }}</p>
+        <a href="{{ path('app_candidat_edit', {'id': user.candidat.id}) }}" class="ms-auto"><img src="{{ asset('assets/img/modofy.png') }}" class="ms-auto icon2" alt="icone modifier"></a>
+        
+    </div>
+    <div class='card mb-3 pt-3'>
+        <div class="d-flex justify-content-around">
+            <div class="col-6">
+                <h5 class='ps-3 text-custom'>Poste(s) recherché(s) :</h5>
+                <p class="ps-4"> {{ candidat.recherche }} </p>
+            </div>
+            <div class="col-6 d-flex align-items-center">
+                {% if candidat.cvPDF %}
+                    <h5 class='mt-3 text-custom'>CV :</h5>
+                        <a href="{{ asset("assets/img/cvpdf/" ~ candidat.cvPDF) }}" style="text-decoration: none;" class="ms-3" target="_blank"><img src="{{ asset('assets/img/CV.png') }}" class="ms-auto icon2 shadow" alt="icone CV"></a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="">
+            <h5 class='ps-3 text-custom'>Présentation :</h5>
+            <p class="ps-4"> {{ candidat.presentation }}</p>
+        </div>
+    </div>
+    <div class="card mb-3 pt-3">
+        <h5 class='ps-3 text-custom'>Compétences :</h5>
+        <div class='d-flex flex-wrap ps-2'>
+            {% for competence in candidat.getCompetence() %}
+                <div class="cartouche ms-3">          
+                    {{ competence.nom }}
+                </div>            
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

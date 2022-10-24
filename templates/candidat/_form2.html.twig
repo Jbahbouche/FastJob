@@ -1,0 +1,15 @@
+{{ form_start(form) }}
+    {{ form_row(form.nom) }}
+    {{ form_row(form.prenom) }}
+    {{ form_row(form.naissance) }}
+    {{ form_row(form.telephone) }}
+    {{ form_row(form.domaine) }}
+    {{ form_row(form.recherche) }}
+    {{ form_row(form.presentation) }}
+    {{ form_row(form.cvPDF) }}
+    {{ form_label(form.competence, 'Vos competences') }}
+    {{ form_row(form.competence) }}
+    
+    {# {{ form_widget(form) }} #}
+    <button class="btn btn-custom text-white my-4 py-2 shadow w-75" type="submit">Valider</button>
+{{ form_end(form) }}

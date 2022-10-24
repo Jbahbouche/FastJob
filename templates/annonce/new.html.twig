@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle Annonce{% endblock %}
+
+{% block body %}
+
+<main class="form-signin2 card shadow">
+    <div class="text-center mb-4">
+        <img src="{{ asset('assets/img/logo/' ~ societe.logo) }}" class="logo" alt="logo FastJob">
+    </div>
+    <h1 class="h3 mb-3 font-weight-normal">Nouvelle Annonce</h1>
+        {{ include('annonce/_form.html.twig') }}
+
+</main>
+{% endblock %}

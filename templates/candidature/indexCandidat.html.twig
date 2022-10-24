@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste de mes candidatures{% endblock %}
+
+{% block body %}
+<main class="form-signin2 card shadow">
+    <div class="text-center  text-custom mb-4 d-flex justify-content-start align-items-center">
+        <h3 >Toutes vos candidatures</h1>
+    </div>
+    
+    {% for candidature in candidatures %}
+        <div class='card shadow ps-2 mb-2 pt-2'>
+            <div class="d-flex justify-content-between">
+                <h3 class="ms-2 text-custom">{{ candidature.getAnnonce().titre }}</h2>
+                <div class="me-2">
+                    <h4 class=' text-custom'>Candidature déposée le  : {{ candidature.createdAt ? candidature.createdAt|date('d/m/Y') : '' }}</h4>
+                </div>
+            </div>
+            <div class='d-flex align-items-center'>
+                <img src="{{ asset('assets/img/logo/' ~ candidature.getAnnonce().getSociete().logo) }}" class="me-3" style="width: 30px;"alt="logo">
+                <h5 class=' text-custom'>{{ candidature.getAnnonce().getSociete().nom }}</h5>
+                <h6> - {{ candidature.getAnnonce().departement }} - {{ candidature.getAnnonce().ville }}</h6>
+                <h6 class='ms-2 text-custom me-0'>Salaire : {{ candidature.getAnnonce().salaire }}k€</h6>
+            </div>
+            <p class="small mx-1">{{ candidature.getAnnonce().profil | u.truncate(500, '...') }}</p>
+            <div class='d-flex justify-content-end mb-3'>
+                {% if candidature.consulte %}
+                    {% if candidature.retenu %}
+                        <p class="cartoucheConsult me-3">Candidature consultée</p>
+                    {% else %}
+                        <p class="cartoucheNonRetenue me-3">Candidature non retenue</p>
+                    {% endif %}
+                {% else %}
+                    <p class="cartoucheNonConsult  me-3">Candidature non consultée</p>
+                {% endif %}
+                <a href="{{ path('app_annonce_show', {'id': candidature.getAnnonce().id}) }}" class="btn btn-custom me-2" style="color: white; padding: 5px 5px 0px 5px;">Détails</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

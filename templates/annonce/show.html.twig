@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Annonce{% endblock %}
+
+{% block body %}
+<main class="form-signin2 card shadow p-4">
+    <div class="d-flex justify-content-between">
+        <h4 class='text-custom'>{{ annonce.titre }}</h4>
+        {% if app.user.roles == ["ROLE_SOCIETE", "ROLE_USER"] %}
+            <div>
+            {% if app.user.societe is defined and app.user.societe is not null%}    
+                {% if app.user.societe.id == annonce.getSociete().id %}
+                    <a href="{{ path('app_mes_annonces') }}" class="btn btn-custom text-white">Retour mes offres</a>
+                    <a href="{{ path('app_annonce_index') }}" class="btn btn-custom text-white">Retour aux offres</a>
+                {% else %}
+                    <a href="{{ path('app_annonce_index') }}" class="btn btn-custom text-white">Retour aux offres</a>
+                {% endif %}
+            {% else %}
+
+            {% endif %}
+            </div>
+        {% elseif app.user.roles == ["ROLE_CANDIDAT", "ROLE_USER"] %}
+            <a href="{{ path('app_annonce_index') }}" class="btn btn-custom text-white">Retour</a>
+        {% endif %}
+    </div>
+    <div class="d-flex align-items-center">
+        <img src="{{ asset('assets/img/logo/' ~ annonce.getSociete().logo) }}" class="" style="width: 40px;"alt="logo FastJob">
+        <h5>{{ annonce.getSociete().nom }}</h5>
+    </div>
+    <h5>{{ annonce.departement }} - {{ annonce.ville }}</h5>
+    <h5><span class="text-custom">Salaire: </span>{{ annonce.salaire }} k€/an</h5>
+    <h5><span class="text-custom">Publiée le : </span>{{ annonce.createdAt ? annonce.createdAt|date('d/m/Y') : '' }}</h5>
+    <div class="d-flex justify-content-between">
+        <h5><span class="text-custom">Type de contrat : </span>{{ annonce.contrat }}</h5>
+        {% if app.user.roles == ["ROLE_CANDIDAT", "ROLE_USER"] %}
+            {% if dejaPostule %}
+                <h5 class="cartouchePostule">Vous avez postulé à cette offre</h5>
+            {% else %}
+                <a href="{{ path('app_candidater', {'id': annonce.id}) }}" class="btn btn-custom text-white me-3">Postuler</a>
+            {% endif %}
+        {% endif %}
+    </div>
+    <h5 class="text-custom">Description de l'entreprise : </h5>
+    <p>{{ annonce.description }}</p>
+    <h5 class="text-custom">Mission et profil : </h5>
+    <p>{{ annonce.profil }}</p>
+    <div class="mt-5 d-flex justify-content-end">
+    {% if app.user.societe.id is defined and app.user.societe is not null and app.user.societe == annonce.getSociete() %}
+        <a href="{{ path('app_annonce_edit', {'id': annonce.id}) }}" class="btn btn-custom text-white me-3">Modifier</a>
+        {{ include('annonce/_delete_form.html.twig') }}
+    {% endif %}
+    {% if app.user.roles == ["ROLE_CANDIDAT", "ROLE_USER"] %}
+        {% if dejaPostule %}
+            <h5 class="cartouchePostule">Vous avez postulé à cette offre</h5>
+        {% else %}
+            <a href="{{ path('app_candidater', {'id': annonce.id}) }}" class="btn btn-custom text-white me-3">Postuler</a>
+        {% endif %}
+    {% endif %}
+    </div>
+</main>
+    
+
+    
+
+    
+
+    
+{% endblock %}

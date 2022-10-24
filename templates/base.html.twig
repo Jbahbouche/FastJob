@@ -2,18 +2,93 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        <title>{% block title %}Bienvenue!{% endblock %}</title>
+        <link rel="icon" href="{{ asset('assets/img/FastJob.png') }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=PT+Sans&display=swap" rel="stylesheet">
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
         {% endblock %}
-
+        <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+        
+        <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}" defer></script>
         {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
+            
         {% endblock %}
+        <script src="{{asset('assets/js/script.js')}}"></script>
     </head>
     <body>
+        <nav class="navbar navbar-expand-md navbar-light bg-grey pb-0 shadow mb-4" aria-label="">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">
+                    <img src="{{ asset('assets/img/FastJob.png') }}" class="logo" alt="logo FastJob">
+                </a>
+                <button class="navbar-toggler mb-1 shadow" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse " id="navbar">
+
+                    <ul class="navbar-nav ms-auto mb-1 mb-md-0">
+                    {% if not app.user %}
+                        <li class="nav-item mx-1">
+                            <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                        </li>
+                        <li class="nav-item mx-1">
+                            <a class="nav-link" href="{{path('app_inscription')}}">Inscription</a>
+                        </li>
+                    {% endif %}
+                    {% if app.user %}
+                    {% if app.user.roles == ["ROLE_SOCIETE", "ROLE_USER"] %}
+                        <li class="nav-item mx-1">
+                            <a class="nav-link" href="{{ path('app_mes_annonces') }}">Mes Offres d'emploi</a>
+                        </li>
+                        <li class="nav-item mx-1">
+                            <a class="nav-link" href="{{ path('app_annonce_index') }}">Offres d'emploi</a>
+                        </li>
+                        <li class="nav-item mx-1">
+                            <a class="nav-link" href="{{ path('app_annonce_new') }}">Nouvelle offre</a>
+                        </li>
+                        <li class="nav-item mx-1">
+                            <a class="nav-link" href="#">Candidatures</a>
+                        </li>
+                        <li class="nav-item mx-1 dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="drop4" data-bs-toggle="dropdown" aria-expanded="false"><img src="{{asset('assets/img/user.png')}}" class="icon" alt=""></a>
+                                <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="drop4">
+                                    <li><a class="dropdown-item" href="{{ path('app_societe_show', {'id': app.user.id}) }}">Profil</a></li>
+                                    <li><a class="dropdown-item" href="{{ path('app_parametres') }}">Paramètres</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item dropdown-item-danger" href="{{ path('app_logout') }}">Déconnexion</a></li>
+                                </ul>
+                        </li>
+                    {% endif %}
+                    {% if app.user.roles == ["ROLE_CANDIDAT", "ROLE_USER"] %}
+                        <li class="nav-item mx-1">
+                            <a class="nav-link" href="{{ path('app_annonce_index') }}">Recherche</a>
+                        </li>
+                        <li class="nav-item mx-1">
+                            <a class="nav-link" href="{{ path('app_mes_candidatures') }}">Mes candidatures</a>
+                        </li>
+                        <li class="nav-item mx-1">
+                            <a class="nav-link" href="#">Mes compétences</a>
+                        </li>
+                        <li class="nav-item mx-1 dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false"><img src="{{asset('assets/img/user.png')}}" class="icon" alt=""></a>
+                                <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="dropdown04">
+                                    <li><a class="dropdown-item" href="{{ path('app_candidat_show', {'id': app.user.id}) }}">Profil</a></li>
+                                    <li><a class="dropdown-item" href="{{ path('app_parametres', {'id': app.user.id}) }}">Paramètres</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item dropdown-item-danger" href="{{ path('app_logout') }}">Déconnexion</a></li>
+                                </ul>
+                        </li>
+                    {% endif %}
+                    {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
         {% block body %}{% endblock %}
     </body>
 </html>

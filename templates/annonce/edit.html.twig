@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Annonce{% endblock %}
+
+{% block body %}
+
+<main class="form-signin2 card shadow">
+    <div class="text-center mb-4">
+        <img src="{{ asset('assets/img/logo/' ~ societe.logo) }}" class="logo" alt="logo FastJob">
+    </div>
+    <h1 class="h3 mb-3 font-weight-normal">Modifier l'annonce</h1>
+    {{ include('annonce/_form.html.twig', {'button_label': 'Update'}) }}
+    <a href="{{ path('app_mes_annonces') }}" class="btn btn-danger text-white my-4 py-2 shadow w-75">Retour sans modifier</a>
+</main>
+{% endblock %}

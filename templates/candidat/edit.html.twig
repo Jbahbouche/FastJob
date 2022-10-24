@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification de mon Profil{% endblock %}
+
+{% block body %}
+
+<main class="form-signin2 card shadow">
+
+    <h1 class="h3 mb-3 font-weight-normal">Modification de votre profil </h1>
+        {{ include('candidat/_form2.html.twig', {'button_label': 'Update'}) }}
+
+</main>
+{% endblock %}
